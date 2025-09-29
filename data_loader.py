@@ -103,7 +103,7 @@ class DataLoader:
         3) each respondent has correct #tasks for their version
         """
         # --- 1) Compare best/worst with original response columns per task.
-        bw_errs = []
+        bw_errors = []
         max_t = int(combined["task_id"].max())
         for t in range(1, max_t + 1):
             bcol, wcol = f"MXD_{t}_b", f"MXD_{t}_w"
@@ -118,7 +118,7 @@ class DataLoader:
             mis = (m["best_item"] != pd.to_numeric(m[bcol], errors="coerce")) | \
                   (m["worst_item"] != pd.to_numeric(m[wcol], errors="coerce"))
             if mis.any():
-                bw_errs.append((t, int(mis.sum())))
+                bw_errors.append((t, int(mis.sum())))
 
         # --- 2) set_items vs design using true list equality (robust to string/list types).
         item_cols = sorted(
@@ -149,18 +149,18 @@ class DataLoader:
                 return [int(s) for s in re.findall(r"-?\d+", val)]
             return []
 
-        set_errs = []
+        set_errors = []
         for _, r in combined.iterrows():
             expected = design_ref.get((r["version"], r["task_id"]))
             actual = _parse_items(r["set_items"])
             if expected is None or actual != expected:
-                set_errs.append((r["respondent_id"], r["version"], r["task_id"]))
+                set_errors.append((r["respondent_id"], r["version"], r["task_id"]))
 
         # --- 3) per-respondent task counts vs design.
         expected_tasks = design.groupby("Version")["Set"].nunique().to_dict()
         counts = combined.groupby(["respondent_id", "version"])["task_id"].nunique()
         bad_counts = counts[counts != counts.index.get_level_values("version").map(expected_tasks)]
 
-        print("Best/Worst mismatches per task:", bw_errs or "None")
-        print("Set_items mismatches:", set_errs or "None")
+        print("Best/Worst mismatches per task:", bw_errors or "None")
+        print("Set_items mismatches:", set_errors or "None")
         print("Row count mismatches:", "None" if bad_counts.empty else bad_counts.to_dict())
