@@ -1,0 +1,16 @@
+{
+  "config": {
+    "burn_in": 100,
+    "iters": 200,
+    "thin": 1,
+    "mh_step_init": 0.1,
+    "target_accept": 0.3,
+    "random_seed": 1,
+    "save_draws": true,
+    "save_thin": 20,
+    "parallel_workers": null
+  },
+  "N": 1945,
+  "J": 40,
+  "p": 39
+}
