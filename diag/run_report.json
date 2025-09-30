@@ -1,0 +1,23 @@
+{
+  "bundle_dir": "C:\\Users\\PBR\\OneDrive - Motivaction\\Documents\\Max_Diff_Hierarchical_Bayes",
+  "outdir": "C:\\Users\\PBR\\OneDrive - Motivaction\\Documents\\Max_Diff_Hierarchical_Bayes\\diag",
+  "J": 40,
+  "N": 1945,
+  "trace_metrics": [
+    "trace_loglik",
+    "trace_rlh",
+    "trace_pct_cert",
+    "trace_accept_rate",
+    "trace_param_rms",
+    "trace_avg_var"
+  ],
+  "tail_frac": 0.5,
+  "files": {
+    "trace_summary_tail": "trace_summary_tail.csv",
+    "traces_png_dir": "traces/",
+    "hb_utilities": "hb_utilities.csv",
+    "hb_shares": "hb_shares.csv",
+    "hb_rlh": "hb_rlh.csv"
+  },
+  "notes": "RLH is the geometric mean of predicted choice probabilities per respondent; PctCert and RLH are standard HB convergence/fit diagnostics. Utilities are zero-centered per respondent; shares sum to 100 per respondent."
+}
