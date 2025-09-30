@@ -303,6 +303,8 @@ def run_diag_and_export(
     # 3) Per-respondent RLH
     rlh_df = rlh_per_respondent_from_likelihood(results.beta_mean, spec)
     rlh_df.to_csv(outdir / "hb_rlh.csv", index=False, float_format="%.6f", encoding="utf-8")
+    rlh_df = pd.read_csv(outdir / "hb_rlh.csv")
+    rlh_df["rlh"].describe(percentiles=[.1,.25,.5,.75,.9]).to_csv(outdir / "hb_rlh_summary.csv")
 
     # 4) Exports
     write_matrix_csv(utils_zc, respondent_ids, item_ids, outdir / "hb_utilities.csv")

@@ -50,7 +50,7 @@ if __name__ == "__main__":
     
     start_time = time.time()
     # run sampler
-    cfg = HBSamplerConfig(burn_in=100, iters=200, mh_step_init=0.10, target_accept=0.30,
+    cfg = HBSamplerConfig(burn_in=1000, iters=1000, mh_step_init=0.10, target_accept=0.30,
                           random_seed=1, save_draws=True, save_thin=20)
     sampler = HBSampler(spec, cfg)
     results = sampler.run()
@@ -81,7 +81,7 @@ if __name__ == "__main__":
         "p": spec.p,
         "elapsed_time_seconds": elapsed_time,
     }
-    
+
     with open("hb_results_metadata.json", "w", encoding="utf-8") as f:
         json.dump(metadata, f, indent=2)
 

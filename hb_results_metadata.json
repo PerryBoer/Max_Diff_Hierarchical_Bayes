@@ -1,7 +1,7 @@
 {
   "config": {
-    "burn_in": 100,
-    "iters": 200,
+    "burn_in": 1,
+    "iters": 2,
     "thin": 1,
     "mh_step_init": 0.1,
     "target_accept": 0.3,
@@ -12,5 +12,6 @@
   },
   "N": 1945,
   "J": 40,
-  "p": 39
+  "p": 39,
+  "elapsed_time_seconds": 7.721460819244385
 }
